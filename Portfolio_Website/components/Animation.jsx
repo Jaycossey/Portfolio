@@ -1,0 +1,1 @@
+const playerCanvas = doument.getElementById('playerCanvas');
