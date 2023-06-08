@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import profilePic from './assets/profile-pic.png'
-// import Profile from '../components/Profile.jsx'
+import playerAnimate from '../components/Animation.jsx'
 import './UnderConstruction.css'
 
 function App() {
@@ -44,6 +44,7 @@ function App() {
           </select>
           <canvas id="playerCanvas" className="border-2 border-black w-16 h-16 col-start-2 row-start-2">{/* canvas height & width = 64px */}</canvas>
           <canvas id="parallaxCanvas" className="w-screen h-32 border-2 border-black fixed mt-5">{/* margin-20px!! CANVAS HEIGHT = 128px */}</canvas>
+          {/* <Canvas draw={playerAnimate} width={64} height={64} /> */}
         </div>
       </div>
     </>
