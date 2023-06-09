@@ -29,10 +29,10 @@ function App() {
         <div id="portfolio-container" className="border-2 border-red-700 col-span-5 row-span-3 grid grid-cols-10 grid-rows-5 gap-2">
           <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2"></div>
           <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2 row-start-2 col-start-4"></div>
-          <div id="under-construction-card" className="border-2 border-black col-span-1 row-span-1 row-start-1 col-start-9"></div>
+          <div id="under-construction-card" className="border-2 border-black col-span-1 row-span-1 row-start-1 col-start-8"></div>
           <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2"></div>
           <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2 col-start-2"></div>
-          <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-1 col-start-6 row-start-5"></div>
+          <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-1 col-start-5 row-start-5"></div>
           <div id="under-construction-card" className="border-2 border-black col-span-3 row-span-2 col-start-6 row-start-3"></div>
           <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-4 col-start-9 row-start-2"></div>
         </div>
