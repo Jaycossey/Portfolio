@@ -3,14 +3,37 @@ import './App.css'
 import profilePic from './assets/profile-pic.png'
 import playerAnimate from '../components/Animation.jsx'
 import './UnderConstruction.css'
+// import toggleCodeBg from '../components/toggleCodeBg.jsx'
+import underHoodCode from './assets/underHood.png'
+
+const defaultBgState = {
+  bgToggle: false,
+};
+function toggleCodeBg() {
+  const underHoodImage = document.getElementById('underHood');
+  if (defaultBgState == false) {
+    defaultBgState.bgToggle = true;
+    underHoodImage.setAttribute('style', 'opacity:0.9');
+  } else if (defaultBgState == true) {
+    defaultBgState.bgToggle = false;
+    underHoodImage.setAttribute('style', 'opacity:0');
+  }
+}
+
+function setHidden() {
+  document.getElementById('underHood').setAttribute('style', 'opacity:0');    
+}
 
 function App() {
 
   return (
     <>
       <div id="background" className="w-screen h-screen fixed bg-gradient-to-br from-violet-600 via-violet-100 to-violet-400 grid grid-cols-5 grid-rows-6 gap-2">
-        <div id="profile-container" className="row-span-2">
-          <img id="profile-pic" src={profilePic} className="rounded-full scale-90 hover:scale-100 duration-300 hover:cursor-pointer hover:border-8 border-r-8 border-b-8 border-violet-300 shadow-violet-900 -translate-x-5 -translate-y-5 hover:translate-x-5 hover:translate-y-5" />
+          <div id="underHood-container" className="fixed w-screen">
+            <img id="underHood" src={underHoodCode} onLoad={setHidden} className="m-auto mt-20 w-4/5 rounded-3xl" />
+          </div>
+        <div id="profile-container" onClick={toggleCodeBg} className="row-span-2">
+          <img id="profile-pic" src={profilePic} className="rounded-full scale-90 hover:scale-100 duration-300 hover:cursor-pointer hover:border-8 border-r-8 border-b-8 border-violet-300 shadow-violet-900 -translate-x-10 -translate-y-5 hover:translate-x-5 hover:translate-y-5 active:scale-90" />
         </div>
 
         <div id="welcome-container" className="border-2 border-black col-start-2 col-span-1 row-span-2 mr-10 text-right">
