@@ -28,7 +28,7 @@ export default function UnderHood() {
                 <img id="underHood" src={underHoodCode} onLoad={setHidden} className="m-auto mt-20 w-4/5 rounded-3xl border-8 duration-300" />
             </div>
             <div id="profile-container" className="row-span-2">
-                <a href="#" class="transititext-primary text-primary transition" data-te-toggle="tooltip" title="Click for an under the hood look!">
+                <a href="#" className="rounded-3xl bg-transparent shadow-2xl shadow-slate-400" data-te-toggle="tooltip" title="Click for an under the hood look!">
                     <img id="profile-pic" onClick={toggleCodeBg} src={profilePic} className="rounded-full scale-90 hover:scale-100 duration-300 hover:cursor-pointer hover:border-8 border-r-8 border-b-8 border-violet-300 shadow-violet-900 -translate-x-10 -translate-y-5 hover:translate-x-5 hover:translate-y-5 active:scale-90" />
                 </a>
             </div>

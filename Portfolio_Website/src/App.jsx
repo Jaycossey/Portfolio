@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import UnderHood from '../components/UnderHood.jsx'
-  
+import WelcomeText from '../components/WelcomeText.jsx'
   
 function App() {
     
@@ -9,20 +9,7 @@ function App() {
     <>
       <div id="background" className="w-screen h-screen fixed bg-gradient-to-br from-violet-600 via-violet-100 to-violet-400 grid grid-cols-5 grid-rows-6 gap-2">
         <UnderHood />
-
-        <div id="welcome-container" className="border-2 border-black col-start-2 col-span-1 row-span-2 mr-10 text-right">
-          <p className="text-3xl p-5 pt-12">Hello, World!</p>
-          <p className="text-xl p-5">My name is Ian</p>
-          <p className="text-xl p-5">I am a front end developer.</p>
-        </div>
-        <div id="contact-container" className="border-2 border-black col-start-4 col-span-2 row-span-2 mr-10 grid grid-cols-4">
-          <p className="text-2xl col-span-4">About me default text, figure it out, or even a short blog post anything that would be about 5-10 lines leading into...</p>
-          <p className="text-2xl col-span-4">Work with me!</p>
-          <div id="linkedin-icon" className="w-20 h-20 m-auto border-2 border-black col-span-2">Linked</div>
-          <div id="email-icon" className="w-20 h-20 m-auto border-2 border-black col-span-2">email</div>
-          <div id="github-icon" className="w-20 h-20 border-2 border-black col-span-2">github</div>
-          <div id="codepen-icon" className="w-20 h-20 border-2 border-black col-span-2">codepen</div>
-        </div>
+        <WelcomeText />
         <div id="portfolio-container" className="border-2 border-red-700 col-span-5 row-span-3 grid grid-cols-10 grid-rows-5 gap-2">
           <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2"></div>
           <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2 row-start-2 col-start-4"></div>
