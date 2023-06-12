@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import UnderHood from '../components/UnderHood.jsx'
 import WelcomeText from '../components/WelcomeText.jsx'
+import UnderConstructionSign from '../components/UnderConstructionSign.jsx'
   
 function App() {
     
@@ -11,14 +12,30 @@ function App() {
         <UnderHood />
         <WelcomeText />
         <div id="portfolio-container" className="border-2 border-red-700 col-span-5 row-span-3 grid grid-cols-10 grid-rows-5 gap-2">
-          <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2"></div>
-          <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2 row-start-2 col-start-4"></div>
-          <div id="under-construction-card" className="border-2 border-black col-span-1 row-span-1 row-start-1 col-start-8"></div>
-          <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2"></div>
-          <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-2 col-start-2"></div>
-          <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-1 col-start-5 row-start-5"></div>
-          <div id="under-construction-card" className="border-2 border-black col-span-3 row-span-2 col-start-6 row-start-3"></div>
-          <div id="under-construction-card" className="border-2 border-black col-span-2 row-span-4 col-start-9 row-start-2"></div>
+          <div id="under-construction-card" className="col-span-2 row-span-2">
+            <UnderConstructionSign />
+          </div>
+          <div id="under-construction-card" className="col-span-2 row-span-2 row-start-2 col-start-4">
+            <UnderConstructionSign />
+          </div>
+          <div id="under-construction-card" className="col-span-1 row-span-2 row-start-1 col-start-8">
+            <UnderConstructionSign />
+          </div>
+          <div id="under-construction-card" className="col-span-2 row-span-2">
+            <UnderConstructionSign />
+          </div>
+          <div id="under-construction-card" className="col-span-2 row-span-2 col-start-2">
+            <UnderConstructionSign />
+          </div>
+          <div id="under-construction-card" className="col-span-2 row-span-2 col-start-4 row-start-4">
+            <UnderConstructionSign />
+          </div>
+          <div id="under-construction-card" className="col-span-3 row-span-2 col-start-6 row-start-3">
+            <UnderConstructionSign />
+          </div>
+          <div id="under-construction-card" className="col-span-2 row-span-4 col-start-9 row-start-2">
+            <UnderConstructionSign />
+          </div>
         </div>
         <div id="animation-container" className="border-2 border-yellow-400 col-span-5 row-span-1 grid grid-rows-3 grid-cols-10">
           <select id="animation-choice" className="text-center rounded-3xl h-10 w-60 relative m-auto col-start-5 shadown-xl bg-violet-300 z-10">
@@ -26,8 +43,8 @@ function App() {
             <option>--  Run  --</option>
             <option>--  Jump  --</option>
           </select>
-          <canvas id="playerCanvas" className="border-2 border-black w-16 h-16 col-start-2 row-start-2">{/* canvas height & width = 64px */}</canvas>
-          <canvas id="parallaxCanvas" className="w-screen h-32 border-2 border-black fixed mt-5">{/* margin-20px!! CANVAS HEIGHT = 128px */}</canvas>
+          <canvas id="playerCanvas" className="w-16 h-16 col-start-2 row-start-2">{/* canvas height & width = 64px */}</canvas>
+          <canvas id="parallaxCanvas" className="w-screen h-32 fixed mt-5">{/* margin-20px!! CANVAS HEIGHT = 128px */}</canvas>
           {/* <Canvas draw={playerAnimate} width={64} height={64} /> */}
         </div>
       </div>

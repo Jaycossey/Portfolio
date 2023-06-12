@@ -10,7 +10,6 @@ document.getElementById('underHood').setAttribute('style', 'opacity:0');
 }
 
 function toggleCodeBg() {
-
     const underHoodImage = document.getElementById('underHood');
     if (defaultBgState.bgToggle == false) {
     defaultBgState.bgToggle = true;
