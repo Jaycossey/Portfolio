@@ -9,15 +9,19 @@ function setHidden() {
 document.getElementById('underHood').setAttribute('style', 'opacity:0');    
 }
 
+// Currently need to fix the z-index on this as the underhood image is overlapping or behind different elements, this isnt a priority fix but would be nice to 
+// fix soon. Ideally want to have the code show over the top of all the other elements on screen. This may become more problematic once the bg pixel art is added
+// but for now leaving this comment as a reminder to fix.
+
 function toggleCodeBg() {
     const underHoodImage = document.getElementById('underHood');
     if (defaultBgState.bgToggle == false) {
     defaultBgState.bgToggle = true;
-    underHoodImage.setAttribute('style', 'opacity:0.9', 'z-index:20');
+    underHoodImage.setAttribute('style', 'opacity:0.9');
     } else if (defaultBgState.bgToggle == true) {
     defaultBgState.bgToggle = false;
     underHoodImage.setAttribute('style', 'opacity:0');
-    }
+}
 }
 
 export default function UnderHood() {

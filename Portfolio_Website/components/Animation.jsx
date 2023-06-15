@@ -1,3 +1,10 @@
+// THIS IS MY NEXT FIX!!!! so having the code for this work on the vanilla JS version (player run and jump animations) but not in react is making me question my sanity. 
+// Once the actual pixel art bg is finished and added on here then I can begin to work the canvas (seen some tutorials for react canvas elements and components) and add 
+// the player sprites and parallax bg (3 layer for this little strip rather than 5) to enable some interactivity. 
+// 
+// Once the basic 2 animations are added for the player, I want to be able to create the first level enemys and give users the option to "play" an auto sidescroller for 
+// the bottom of the screen. Using react states for the animations and also have a high score show on the screen. Can I create a leaderboard for this? would be a cool feature
+// but not nearly a priority for now.
 
 export default function Animation() {
     return (
