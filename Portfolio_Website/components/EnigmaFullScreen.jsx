@@ -1,6 +1,9 @@
 import enigmaTopView from '../src/assets/enigma.png'
 import plugboardView from '../src/assets/enigma-plugboard.png'
 
+// Read this code tomorrow, make sure to check that it is scaleable (not currently it isnt) and then begin to build the functionality. remember
+// that the idea is to allow user to choose 3 of 5 rotars and set the starting point of them! this will need adding at some point but want this to get
+// working first. THIS IS MAIN PRIORITY!!
 export default function EnigmaFullScreen() {
     return (
         <>

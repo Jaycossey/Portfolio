@@ -1,6 +1,10 @@
 import enigmaTopImage from '../src/assets/enigma.png'
 import EnigmaFullScreen from './EnigmaFullScreen.jsx'
 
+// Currently the toggle functions dont work (not linked and also need to double chekc the method.) the card is mostly fine for now but remember to edit the image in the card
+// Also remembe to actually finish the enigma fullscreen before finishing this. This is a main project that you are undertaking, this must not break the website!!!!! fix the enigma
+// funcitonality first and allow a cipher to be run before fucking with any more of the aesthetics. 
+
 // set default window state for the enigma machine.
 let defaultWindowState = false;
 let background = document.getElementById('background');
