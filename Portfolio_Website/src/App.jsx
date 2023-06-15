@@ -6,6 +6,8 @@ import UnderConstructionSign from '../components/UnderConstructionSign.jsx'
 import Animation from '../components/Animation.jsx'
 import SettlementCard from '../components/SettlementCard.jsx'
 import QuoteMachineCard from '../components/QuoteMachineCard.jsx'
+import EnigmaMachineCard from '../components/EnigmaMachineCard.jsx'
+import EnigmaFullScreen from '../components/EnigmaFullScreen'
 
 
 // Everything works currently on here. Adding components for each portfolio piece as they are made / converted to react. Next portfolio piece will be the enigma machine
@@ -38,13 +40,14 @@ function App() {
             <UnderConstructionSign />
           </div>
           <div id="under-construction-card" className="col-span-2 row-span-4 col-start-9 row-start-2">
-            <UnderConstructionSign />
+            <EnigmaMachineCard />
           </div>
         </div>
         <Animation />
+        <EnigmaFullScreen />
       </div>
     </>
-  )
+  );
 }
 
 export default App
