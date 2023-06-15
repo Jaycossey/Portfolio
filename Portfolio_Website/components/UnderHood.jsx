@@ -13,7 +13,7 @@ function toggleCodeBg() {
     const underHoodImage = document.getElementById('underHood');
     if (defaultBgState.bgToggle == false) {
     defaultBgState.bgToggle = true;
-    underHoodImage.setAttribute('style', 'opacity:0.9');
+    underHoodImage.setAttribute('style', 'opacity:0.9', 'z-index:20');
     } else if (defaultBgState.bgToggle == true) {
     defaultBgState.bgToggle = false;
     underHoodImage.setAttribute('style', 'opacity:0');
