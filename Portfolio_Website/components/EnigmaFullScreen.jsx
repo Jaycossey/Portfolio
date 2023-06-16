@@ -5,6 +5,123 @@ import plugboardView from '../src/assets/enigma-plugboard.png'
 // that the idea is to allow user to choose 3 of 5 rotars and set the starting point of them! this will need adding at some point but want this to get
 // working first. THIS IS MAIN PRIORITY!!
 
+/* 
+    THIS IS IMPORTANT TO KNOW!! 
+            There are 2 types of components in react, functional and class components, I have been using functional components as that was the most 
+            memorable for me and was easier to use, however I realise that knowing the difference and where and when to use each of them is vital
+            to my journey in react. So here goes:
+                Functional components: 
+                    These are functions which accept arguments as the properties of the component and return JSX
+                    There is no state or lifecycle methods with functional components.
+                    React hooks are used to manage state variables.
+
+                Class components:
+                    Extend the built in component class and can have state and lifecycle methods.
+                    The react team recommends defining components as functions rather than classes, so currently I am on the right track.
+                    
+                The useState Hook: 
+                    This hook allows you to add state to functional components, returning an array with 2 values. 
+                    This hook takes initial state value as an argument and returns an updated value whenever the setter function is called.
+                    ie: - 
+                        const [state, setState] = useState(initialValue);
+                    the initial value is the value I want to start with (in my case a string containing "Hello, World") and the state is the current 
+                    state value that can be used in the component. the setState function can be used to update state, re rendering the component.
+                    useState can hold any type of value, whereas the ckass component is limited to objects.
+
+                    Never directly modify an object or array stored in useState. instead, create a new updated version of the array/object and call setState
+                    with the new version. ie:- 
+                        const updateName = () => {
+                            ({...state, name: 'John'});
+                        };
+
+                        const updateAge = () => {
+                            ({...state, age: state.age + 1});
+                        };
+
+                        const [array, setArray] = useState([1, 2, 3, 4]);
+                        const addItem = () => {
+                            setArray([...array, 6]);
+                        };
+
+                    useState enables adding state to functional components, so calling React.useState inside a component generates a single piece of state associated
+                    with that component.
+
+                    useState should only be used in the local component state although larger projects may require additional solutions (think about how this component
+                    will be rendered on click of the window. so taking the bool from the window as an argument, if true then render)
+
+                    The initial state will only be used as an argument once on the initial load. 
+                    useState doesnt return the variable, it returns the array
+                    const Message = () => {
+                        const messageState = useState('');
+                        const message = messageState[0]; // contains ''
+                        const setMessage = messageState[1] // contains the function.
+                    }
+
+                    normally, array destructuring will simplify the code
+                    const Message = () => {
+                        const [message, setMessage] = useState('');
+                    }
+
+                    then you can use the state variable in the functional component like any other variable.
+
+                    return (
+                        <div>
+                            <p>{message}</p>
+                        </div>
+                    )
+
+                    to use hooks to update the state:
+                        The second element returned in the use state function takes a new value to update the state variable. 
+                        an example here: 
+
+                        const [cipherText, setCipherText] = useState('');
+
+                        return (
+                            <div>
+                                <input type="text" value={cipherText} onChange={e => setCipherText(e.target.value)} />
+                            </div>
+                            <div>
+                                <p>{cipherText}</p>
+                            </div>
+                        )
+
+                        so with this in mind, I can then instead use that cipherText variable to pass as an argument to the encrypt function and 
+                        return that value to be the new value of the ciphertext textarea. 
+
+                        the function above wont update the value immediately, instead, queuing the update operation and on re-rendering the component
+                        the argument of useState will be ignored and the function will return the most recent value.
+
+                        (the article -- written by Esteban Herrara link: https://blog.logrocket.com/guide-usestate-react/ -- expands on updating with the inclusion of the previous state but that isnt needed for this component.)
+
+                        There are 2 things to keep in mind, 
+
+                            only call hooks at the top level and only call hooks in react functions
+
+                        a functional component can make many calls to useState or other hooks, each hook is stored in a list and 
+                        a variable keeps track of the currently executed hook.
+
+                        below is a direct copy/paste of the step by step of how this works.
+                            React initializes the list of Hooks and the variable that keeps track of the current Hook
+                            React calls your component for the first time
+                            React finds a call to useState, creates a new Hook object (with the initial state), changes the current Hook variable to point to this object, adds the object to the Hooks list, and returns the array with the initial state and the function to update it
+                            React finds another call to useState and repeats the actions of the previous step, storing a new Hook object and changing the current Hook variable
+                            The component state changes
+                            React sends the state update operation (performed by the function returned by useState) to a queue to be processed
+                            React determines it needs to re-render the component
+                            React resets the current Hook variable and calls your component
+                            React finds a call to useState, but this time, since there’s already a Hook at the first position of the list of Hooks, it just changes the current Hook variable and returns the array with the current state, and the function to update it
+                            React finds another call to useState and because a Hook exists in the second position, once again, it just changes the current Hook variable and returns the array with the current state and the function to update it
+
+                        useState and useEffect are two of the most important hooks in react, allowing state management and side effect management in functional components.
+                        both of these hooks are different and should be used in different ways (useEffect was used in the settelment generator for the API call)
+
+                        if the new state is the same as the previous state, react wont trigger a re-render 
+                        useState doesnt merge objects when state is updated, but replaces them.
+                        useState follows the same rules as other hooks
+                        pay attention to the order in which the functions are called.
+
+*/
+
 const rotarArray = [
     {
         name: 'ETW',
@@ -40,6 +157,8 @@ export default function EnigmaFullScreen() {
 
         I need to create the functions for encrypt and printcipher.
     */}
+
+
     return (
         <>
             <div className="absolute z-20 ml-60 mt-20 border-8 border-violet-500 rounded-3xl w-4/5 h-4/5 bg-violet-200 bg-opacity-90 grid grid-cols-3 grid-rows-5">
@@ -53,7 +172,7 @@ export default function EnigmaFullScreen() {
                         <h2 className="text-md">Choose the plugboard settings.</h2>
                         <h2>Choose your rotars and starting positions</h2>
                     </div>
-                    <input id="plaintext" type="text" className="w-80 h-20 rounded-md font-mono p-2" placeholder="Hello, World!"></input>
+                    <input id="plaintext" type="text" className="w-80 h-20 rounded-md font-mono p-2" placeholder="Hello, World!" ></input>
                     <button type="button" for="plaintext" className="m-2 rounded-md bg-violet-300 h-10 w-20 border-2 border-violet-500 hover:scale-105 duration-200">Encrypt</button>
                 </div>
                 <div id="ciphertext" className="col-start-3 text-right mr-20">
@@ -69,6 +188,7 @@ export default function EnigmaFullScreen() {
         </>
     );
 }
+
 
 /*
     How to approach this problems functionality (must replace plugboard image to remove the watermark, avoid copyrights?) 
