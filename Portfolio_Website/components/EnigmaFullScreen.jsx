@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import enigmaTopView from '../src/assets/enigma.png'
 import plugboardView from '../src/assets/enigma-plugboard.png'
+import PlugboardSelect from '../components/PlugboardSelect.jsx'
 
 // Read this code tomorrow, make sure to check that it is scaleable (not currently it isnt) and then begin to build the functionality. remember
 // that the idea is to allow user to choose 3 of 5 rotars and set the starting point of them! this will need adding at some point but want this to get
@@ -131,8 +132,8 @@ import plugboardView from '../src/assets/enigma-plugboard.png'
 
 const rotarArray = [
     {
-        name: 'ETW',
-        combination: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        name: 'lightboard',
+        combination: ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "\n", "A", "S", "D", "F", "G", "H", "J", "K", "\n", "P", "Y", "X", "C", "V", "B", "N", "M", "L"]
     },
     {
         name: 'i',
@@ -158,8 +159,57 @@ const rotarArray = [
 // rotar starting position is the combination index!!!! remember this when starting the funcitonal side of this.
 // ie: rotarArray.v, combination[7] etc, work out the details when its less hot. 
 
+// create the functions for the encrypt process
+function printRotar(int) {
+    let rotarList = "";
+    for (let i = 0; i < rotarArray[int].combination.length; i++) {
+        rotarList += (" " + rotarArray[int].combination[i]);
+    }
+    return rotarList;
+}
+
+function passPlugboard() {
+    
+    // let plugboardSettings = [];
+    // so here is the first hurdle, I need an input for plugboardSettings, the user should be able to use up to 10 plugs, with a hard coded encryption,
+    // if the plaintextcopy[i] == any of those 10 plugged letters, they are switched, so return the "opposite value"
+    return;
+}
+
+function passRotars() {
+    return;
+}
+
+function hitReflector() {
+    return;
+}
+
+function passLightboard() {
+    let cipherText = "Hello, World!";
+    return cipherText;
+}
+
 function encrypt(plaintext) {
-    console.log(plaintext);
+    // create the enigma functions here.
+    let plainTextCopy = plaintext;
+    console.log("plaintext copy: " + plainTextCopy);
+    let cipherText = passLightboard();
+    // loop through the string
+    for (let i = 0; i < plainTextCopy.length; i++) {
+        // remember how this works, so looping through each letter of the string array of charaters
+        // this loop will run for all of the letters
+        // so translated this is plaintext[0 => n]
+        // all this is is data, cs50 is a wonderous course.
+        // console is logging the correct value currently for the ciphertext
+        passPlugboard();
+        passRotars();
+        hitReflector();
+        passRotars();
+        passPlugboard();
+        passLightboard();
+    }
+    console.log(cipherText);
+    return cipherText;
 }
 
 export default function EnigmaFullScreen() {
@@ -169,7 +219,21 @@ export default function EnigmaFullScreen() {
         I need to create the functions for encrypt and printcipher.
     */}
     const [plaintext, setPlaintext] = useState('Hello, World! This project is still under construction, please bare with!');
-    let cipherText = 'Ian! Change Me!';
+    let cipherText = encrypt(plaintext);
+
+    // const [plugboardSettings, setPlugboardSettings] = useState('asd');
+    // const plugboardOptions = document.getElementById('plugboardOptions');
+    // const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    // for (let i = 0; i < alphabet.length; i++) {
+    //     let optionElement = document.createElement("option");
+    //     optionElement.value = alphabet[i];
+    //     optionElement.textContent = alphabet[i];
+    //     // plugboardOptions.appendChild(optionElement);
+    // }
+    // SO NEW PROBLEM!! I need to be able to create the plugboard options dynamically, meaning that I need the alphabet, and for each letter, remove that from all of the
+    // other plugboard options, keep this with just 2 for now, but I am thinking I should create a component for this, will ensure that the functions are only called after this
+    // function has rendered. 
 
     return (
         <>
@@ -180,16 +244,40 @@ export default function EnigmaFullScreen() {
                 </div>
                 <div id="plaintext-container" className="col-start-1 ml-20">
                     <div id="input explanation">
-                        <h1 className="text-lg underline underline-offset-2 font-mono">Enigma Machine</h1>
+                        <h2 className="text-lg underline underline-offset-2 font-mono ml-1">Enigma Machine</h2>
+                        <textarea id="plaintext-input" className="w-80 h-40 rounded-md font-mono p-4 resize-none" value={plaintext} onChange={e => setPlaintext(e.target.value)}></textarea>
                         <h2 className="text-md">Choose the plugboard settings.</h2>
+                        <div id="plugboard-choice" className="w-80 h-full border-2 grid grid-flow-row gap-2">
+                            <PlugboardSelect />
+                            <PlugboardSelect />
+                        </div>
                         <h2>Choose your rotars and starting positions</h2>
+                        <div id="rotar-choice" className="w-80 h-full border-2 grid grid-flow-row gap-2">
+                            <input type="radio" value="Rotar1"></input>
+                            <input type="radio" value="Rotar2"></input>
+                            <input type="radio" value="Rotar3"></input>
+                            <input type="radio" value="Rotar4"></input>
+                            <input type="radio" value="Rotar5"></input>
+                        </div>
                     </div>
-                    <input id="plaintext-input" type="text" className="w-80 h-20 rounded-md font-mono p-2" value={plaintext} onChange={e => setPlaintext(e.target.value)}></input>
-                    <button type="button" className="m-2 rounded-md bg-violet-300 h-10 w-20 border-2 border-violet-500 hover:scale-105 duration-200" onClick={encrypt(plaintext)}>Encrypt</button>
+                    {/* changed this to textarea, this isnt a form so nothing will be submitted. On top of this, tailwind doesnt wrap text on input fields with the value text.
+                        also remember that margin is the outside distance from other objects and padding is for the content of the element.
+                    */}
                 </div>
                 <div id="ciphertext" className="col-start-3 text-right mr-20">
-                    <h1 className="text-lg underline underline-offset-2 font-mono">Your Cipher Here!</h1>
-                    <textarea id="display-cipher" readOnly className="w-full h-80 rounded-3xl p-10 font-mono" value={cipherText}></textarea>
+                    <h2 className="text-lg underline underline-offset-2 font-mono mr-1">Your Cipher Here!</h2>
+                    <textarea id="display-cipher" readOnly className="w-full h-80 rounded-md p-10 font-mono" value={cipherText}></textarea>
+                </div>
+                <div id="visualTestContainer" className="ml-10 col-span-2 col-start-1 row-start-5">
+                    <p className="text-sm font-mono mb-2">Rotar 1: {printRotar(1)}</p>
+                    <p className="text-sm font-mono mb-2">Rotar 1: {printRotar(2)}</p>
+                    <p className="text-sm font-mono mb-2">Rotar 1: {printRotar(3)}</p>
+                    <p className="text-sm font-mono mb-2">Rotar 1: {printRotar(4)}</p>
+                    <p className="text-sm font-mono">Rotar 1: {printRotar(5)}</p>
+                </div>
+                <div id="visualTestLightBoard" className="mr-10 col-span-1 col-start-3 row-start-5">
+                    <p className="whitespace-pre-line text-center text-lg font-mono underline underline-offset-2">Lightboard</p>
+                    <p className="whitespace-pre-line text-center text-lg font-mono">{printRotar(0)}</p>
                 </div>
                 <div id="close-window" className="col-start-3 translate-x-80 mt-40 translate-y-1 rounded-3xl row-start-5 w-1/5 h-1/2 text-center border-r-8 border-b-4 border-l-4 border-violet-900 bg-gradient-to-l from-violet-400 via-violet-300 to-transparent hover:cursor-pointer hover:scale-75 duration-200">
                     <div id="toggleHereX" className="text-2xl mt-5">

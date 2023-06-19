@@ -16,7 +16,7 @@ function App() {
     
   return (
     <>
-      <div id="background" className="w-screen h-screen fixed bg-gradient-to-br from-violet-600 via-violet-100 to-violet-400 grid grid-cols-5 grid-rows-6 gap-2">
+      <main id="background" className="w-screen h-screen fixed bg-gradient-to-br from-violet-600 via-violet-100 to-violet-400 grid grid-cols-5 grid-rows-6 gap-2">
         <UnderHood />
         <WelcomeText />
         <div id="portfolio-container" className="col-span-5 row-span-3 grid grid-cols-10 grid-rows-5 gap-2">
@@ -45,7 +45,7 @@ function App() {
         </div>
         <Animation />
         <EnigmaFullScreen />
-      </div>
+      </main>
     </>
   );
 }
