@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import enigmaTopView from '../src/assets/enigma.png'
 import plugboardView from '../src/assets/enigma-plugboard.png'
 
@@ -120,6 +121,12 @@ import plugboardView from '../src/assets/enigma-plugboard.png'
                         useState follows the same rules as other hooks
                         pay attention to the order in which the functions are called.
 
+
+                        NOW!!!!! So it has been a couple days to refresh my head and all that, but, thanks to all of that information above, and being able to understand how it works 
+                        behind the scenes, and realising that all I am doing is setting the state to be a variable and having the ability to use that variable, I can now take the next 
+                        steps to use that input data and put it through an encryption algorithm for the enigma machine. I already have the 5 rotars, as well as the ETW to be able to 
+                        manipulate and 
+
 */
 
 const rotarArray = [
@@ -151,13 +158,18 @@ const rotarArray = [
 // rotar starting position is the combination index!!!! remember this when starting the funcitonal side of this.
 // ie: rotarArray.v, combination[7] etc, work out the details when its less hot. 
 
+function encrypt(plaintext) {
+    console.log(plaintext);
+}
+
 export default function EnigmaFullScreen() {
     {/* This is where it gets complicated, I need to add an event listener to the input field (plaintext) and then call the encrypt function on change and then
         the print ciphertext function once the encryption has been completed.
 
         I need to create the functions for encrypt and printcipher.
     */}
-
+    const [plaintext, setPlaintext] = useState('Hello, World! This project is still under construction, please bare with!');
+    let cipherText = 'Ian! Change Me!';
 
     return (
         <>
@@ -172,12 +184,12 @@ export default function EnigmaFullScreen() {
                         <h2 className="text-md">Choose the plugboard settings.</h2>
                         <h2>Choose your rotars and starting positions</h2>
                     </div>
-                    <input id="plaintext" type="text" className="w-80 h-20 rounded-md font-mono p-2" placeholder="Hello, World!" ></input>
-                    <button type="button" for="plaintext" className="m-2 rounded-md bg-violet-300 h-10 w-20 border-2 border-violet-500 hover:scale-105 duration-200">Encrypt</button>
+                    <input id="plaintext-input" type="text" className="w-80 h-20 rounded-md font-mono p-2" value={plaintext} onChange={e => setPlaintext(e.target.value)}></input>
+                    <button type="button" className="m-2 rounded-md bg-violet-300 h-10 w-20 border-2 border-violet-500 hover:scale-105 duration-200" onClick={encrypt(plaintext)}>Encrypt</button>
                 </div>
                 <div id="ciphertext" className="col-start-3 text-right mr-20">
                     <h1 className="text-lg underline underline-offset-2 font-mono">Your Cipher Here!</h1>
-                    <textarea id="display-cipher" className="w-full h-80 rounded-3xl p-10 font-mono" placeholder="Cipher Text"></textarea>
+                    <textarea id="display-cipher" readOnly className="w-full h-80 rounded-3xl p-10 font-mono" value={cipherText}></textarea>
                 </div>
                 <div id="close-window" className="col-start-3 translate-x-80 mt-40 translate-y-1 rounded-3xl row-start-5 w-1/5 h-1/2 text-center border-r-8 border-b-4 border-l-4 border-violet-900 bg-gradient-to-l from-violet-400 via-violet-300 to-transparent hover:cursor-pointer hover:scale-75 duration-200">
                     <div id="toggleHereX" className="text-2xl mt-5">
