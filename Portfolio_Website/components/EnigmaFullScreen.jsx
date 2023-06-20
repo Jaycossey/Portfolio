@@ -221,19 +221,7 @@ export default function EnigmaFullScreen() {
     const [plaintext, setPlaintext] = useState('Hello, World! This project is still under construction, please bare with!');
     let cipherText = encrypt(plaintext);
 
-    // const [plugboardSettings, setPlugboardSettings] = useState('asd');
-    // const plugboardOptions = document.getElementById('plugboardOptions');
-    // const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    // for (let i = 0; i < alphabet.length; i++) {
-    //     let optionElement = document.createElement("option");
-    //     optionElement.value = alphabet[i];
-    //     optionElement.textContent = alphabet[i];
-    //     // plugboardOptions.appendChild(optionElement);
-    // }
-    // SO NEW PROBLEM!! I need to be able to create the plugboard options dynamically, meaning that I need the alphabet, and for each letter, remove that from all of the
-    // other plugboard options, keep this with just 2 for now, but I am thinking I should create a component for this, will ensure that the functions are only called after this
-    // function has rendered. 
 
     return (
         <>
@@ -246,9 +234,8 @@ export default function EnigmaFullScreen() {
                     <div id="input explanation">
                         <h2 className="text-lg underline underline-offset-2 font-mono ml-1">Enigma Machine</h2>
                         <textarea id="plaintext-input" className="w-80 h-40 rounded-md font-mono p-4 resize-none" value={plaintext} onChange={e => setPlaintext(e.target.value)}></textarea>
-                        <h2 className="text-md">Choose the plugboard settings.</h2>
-                        <div id="plugboard-choice" className="w-80 h-full border-2 grid grid-flow-row gap-2">
-                            <PlugboardSelect />
+                        <h2 className="text-md">Choose the plugboard settings:</h2>
+                        <div id="plugboard-choice" className="w-80 h-full grid grid-row-2 grid-cols-5 gap-2">
                             <PlugboardSelect />
                         </div>
                         <h2>Choose your rotars and starting positions</h2>
@@ -270,10 +257,10 @@ export default function EnigmaFullScreen() {
                 </div>
                 <div id="visualTestContainer" className="ml-10 col-span-2 col-start-1 row-start-5">
                     <p className="text-sm font-mono mb-2">Rotar 1: {printRotar(1)}</p>
-                    <p className="text-sm font-mono mb-2">Rotar 1: {printRotar(2)}</p>
-                    <p className="text-sm font-mono mb-2">Rotar 1: {printRotar(3)}</p>
-                    <p className="text-sm font-mono mb-2">Rotar 1: {printRotar(4)}</p>
-                    <p className="text-sm font-mono">Rotar 1: {printRotar(5)}</p>
+                    <p className="text-sm font-mono mb-2">Rotar 2: {printRotar(2)}</p>
+                    <p className="text-sm font-mono mb-2">Rotar 3: {printRotar(3)}</p>
+                    <p className="text-sm font-mono mb-2">Rotar 4: {printRotar(4)}</p>
+                    <p className="text-sm font-mono">Rotar 5: {printRotar(5)}</p>
                 </div>
                 <div id="visualTestLightBoard" className="mr-10 col-span-1 col-start-3 row-start-5">
                     <p className="whitespace-pre-line text-center text-lg font-mono underline underline-offset-2">Lightboard</p>
