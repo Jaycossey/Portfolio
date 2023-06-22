@@ -235,7 +235,7 @@ export default function EnigmaFullScreen() {
                         <h2 className="text-lg underline underline-offset-2 font-mono ml-1">Enigma Machine</h2>
                         <textarea id="plaintext-input" className="w-80 h-40 rounded-md font-mono p-4 resize-none" value={plaintext} onChange={e => setPlaintext(e.target.value)}></textarea>
                         <h2 className="text-md">Choose the plugboard settings:</h2>
-                        <div id="plugboard-choice" className="w-80 h-full grid grid-row-2 grid-cols-5 gap-2">
+                        <div id="plugboard-choice" className="w-80 h-full grid grid-row-3 grid-cols-5 gap-2">
                             <PlugboardSelect />
                         </div>
                         <h2>Choose your rotars and starting positions</h2>
