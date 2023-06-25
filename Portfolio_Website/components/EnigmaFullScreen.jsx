@@ -3,6 +3,27 @@ import enigmaTopView from '../src/assets/enigma.png'
 import plugboardView from '../src/assets/enigma-plugboard.png'
 import PlugboardSelect from '../components/PlugboardSelect.jsx'
 
+
+
+/* 
+    Taking a break from enigma, dont like original design so will rework the plugboard to be onclick and handle only one state rather than trying to manage multiple, sort of. 
+    click 2 letters, light up corresponding colors, 2 more 2 different colors etc, will allow space for up to 10 plugs as well and better user experience, use a css bg/case for
+    the plug and light boards, can also have the rotars showing that way, would save it being just a picture of one, think big and also more managable, this would make more sense for 
+    my skillset even if it means more styling code, its what I enjoy best so why limit myself?
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Read this code tomorrow, make sure to check that it is scaleable (not currently it isnt) and then begin to build the functionality. remember
 // that the idea is to allow user to choose 3 of 5 rotars and set the starting point of them! this will need adding at some point but want this to get
 // working first. THIS IS MAIN PRIORITY!!
