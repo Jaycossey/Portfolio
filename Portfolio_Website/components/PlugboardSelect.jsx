@@ -47,7 +47,7 @@ export default function PlugboardSelect() {
         // clear selectedValues.correspondingkey
 
         // weird sense of dejavu over with, now I need to actually implement this plan with some code.
-
+        console.log("changed");
     }
 
     // populate the selectElements Array with 10 (hardcoded need to change this at some point to give user choice on how many plugboards the user wants)

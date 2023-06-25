@@ -40,11 +40,12 @@ function App() {
             <UnderConstructionSign />
           </div>
           <div id="under-construction-card" className="col-span-2 row-span-4 col-start-9 row-start-2">
-            <EnigmaMachineCard />
+            <UnderConstructionSign />
+            {/* <EnigmaMachineCard /> */}
           </div>
         </div>
         <Animation />
-        <EnigmaFullScreen />
+        {/* <EnigmaFullScreen /> */}
       </main>
     </>
   );
