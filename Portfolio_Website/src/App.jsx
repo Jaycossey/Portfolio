@@ -8,6 +8,7 @@ import SettlementCard from '../components/SettlementCard.jsx'
 import QuoteMachineCard from '../components/QuoteMachineCard.jsx'
 import EnigmaMachineCard from '../components/EnigmaMachineCard.jsx'
 import EnigmaFullScreen from '../components/EnigmaFullScreen'
+import ClockCard from '../components/ClockCard.jsx'
 
 
 // Everything works currently on here. Adding components for each portfolio piece as they are made / converted to react. Next portfolio piece will be the enigma machine
@@ -24,11 +25,12 @@ function App() {
           <div id="under-construction-card" className="col-span-2 row-span-2 row-start-2 col-start-4">
             <UnderConstructionSign />
           </div>
-          <div id="under-construction-card" className="col-span-1 row-span-2 row-start-1 col-start-8">
+          <div id="portfolio-container" className="col-span-1 row-span-2 row-start-1 col-start-8">
             <QuoteMachineCard />
           </div>
-          <div id="under-construction-card" className="col-span-2 row-span-2">
+          <div id="portfolio-container" className="col-span-2 row-span-2">
             <UnderConstructionSign />
+            {/* <ClockCard /> */}
           </div>
           <div id="under-construction-card" className="col-span-2 row-span-2 col-start-2">
             <UnderConstructionSign />
@@ -40,12 +42,12 @@ function App() {
             <UnderConstructionSign />
           </div>
           <div id="under-construction-card" className="col-span-2 row-span-4 col-start-9 row-start-2">
-            <UnderConstructionSign />
-            {/* <EnigmaMachineCard /> */}
+            {/* <UnderConstructionSign /> */}
+            <EnigmaMachineCard />
           </div>
         </div>
         <Animation />
-        {/* <EnigmaFullScreen /> */}
+        <EnigmaFullScreen />
       </main>
     </>
   );
