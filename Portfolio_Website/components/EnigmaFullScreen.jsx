@@ -1,6 +1,178 @@
 import { useState } from 'react';
 import KeyboardElements from './KeyboardElements.jsx';
 
+const rotarArray = [
+    {
+        name: 'lightboard',
+        combination: ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "A", "S", "D", "F", "G", "H", "J", "K","P", "Y", "X", "C", "V", "B", "N", "M", "L"]
+    },
+    {
+        name: 'i',
+        combination: ["E", "K", "M", "F", "L", "G", "D", "Q", "V", "Z", "N", "T", "O", "W", "Y", "H", "X", "U", "S", "P", "A", "I", "B", "R", "C", "J"]
+    },
+    {
+        name: 'ii',
+        combination: ["A", "J", "D", "K", "S", "I", "R", "U", "X", "B", "L", "H", "W", "T", "M", "C", "Q", "G", "Z", "N", "P", "Y", "F", "V", "O", "E"]
+    },
+    {
+        name: 'iii',
+        combination: ["B", "D", "F", "H", "J", "L", "C", "R", "P", "T", "X", "V", "Z", "N", "Y", "E", "I", "W", "G", "A", "K", "M", "U", "S", "Q", "O"]
+    },
+    {
+        name: 'iv',
+        combination: ["E", "S", "O", "V", "P", "Z", "J", "A", "Y", "Q", "U", "I", "R", "H", "X", "L", "N", "F", "T", "G", "K", "D", "C", "M", "W", "B"]
+    },
+    {
+        name: 'v',
+        combination: ["V", "Z", "B", "R", "G", "I", "T", "Y", "U", "P", "S", "D", "N", "H", "L", "X", "A", "W", "M", "J", "Q", "O", "F", "E", "C", "K"]
+    }
+];
+
+
+export default function EnigmaFullScreen() {
+    // set state hook here for plaintext
+
+    // need to import and update the state of key presses on keyboards, then create a rotar component to handle the new data.
+    // so on click in keyboard will update the users keypressState, push that to a newState array, and then use that data to pass through the rotars
+    // on click with the plugboard will handle its own state and pass to here as the first part of the letters journey.
+
+    /*
+        so step by step, handle the clicks of the keyboard and the plugboard.
+        keyboard will push the letterValue through to an array
+        plugboard will only handle multiples of 2, ensure that the user is prompted until even numbers (10 or lower) are selected
+        lightboard will take whatever the final state is that is passed to it and "light up" whenever the final letterState is passed to it.
+    */
+
+    return (
+        <>
+            <div className="absolute z-20 ml-60 mt-20 border-8 border-violet-500 rounded-3xl w-4/5 h-4/5 bg-violet-200 bg-opacity-90 grid grid-cols-4 grid-rows-5 font-mono">
+
+                <div id="explanation-rotar-selection" className="border-2 row-span-2 m-10 p-2 bg-slate-200 rounded-md shadow-lg">
+                    <h2 className="underline underline-offset-2">The Enigma Machine</h2>
+                    <p className="text-sm">Choose your rotars here and starting positions</p>
+                    <div id="rotar-select" className="grid grid-cols-5 grid-rows-2 border-2 border-black">
+                        <input id="rotar1-selector" type="radio" className="m-5 col-start-1"></input>
+                        <input id="rotar2-selector" type="radio" className="m-5 col-start-2"></input>
+                        <input id="rotar3-selector" type="radio" className="m-5 col-start-3"></input>
+                        <input id="rotar4-selector" type="radio" className="m-5 col-start-4"></input>
+                        <input id="rotar5-selector" type="radio" className="m-5 col-start-5"></input>
+                    </div>
+                </div>
+
+                <div id="plaintext-display" className="row-span-3 row-start-3 m-2 col-start-1 p-10">
+                    <textarea id="plaintext" className="w-full h-full rounded-xl resize-none p-10 shadow-lg" placeholder="this is plaintext, will update as keys are pressed on keyboard"></textarea>
+                </div>
+
+                <div id="enigma-css-container" className="col-span-2 col-start-2 row-span-5 border-8 p-5 border-orange-400 bg-orange-500 rounded-md my-10 grid grid-cols-5 grid-rows-5">
+                    <div id="enigma-rotar-container" className="border-2 col-span-4 row-span-2 grid grid-cols-3 bg-slate-700">
+                        <div id="rotar-container" className="border-2 p-20">
+                            <div id="rotar" className="w-10 h-full border-2 border-black rounded-2xl grid grid-rows-3 bg-slate-400 p-1">
+                                <p id="rotar3-letter" className="text-center font-mono bg-white rounded-md row-start-2 h-7">1</p>
+                            </div>
+                        </div>
+                        <div id="rotar-container" className="border-2 p-20">
+                            <div id="rotar" className="w-10 h-full border-2 border-black rounded-2xl grid grid-rows-3 bg-slate-400 p-1">
+                                <p id="rotar2-letter" className="text-center font-mono bg-white rounded-md row-start-2 h-7">1</p>
+                            </div>
+                        </div>
+                        <div id="rotar-container" className="border-2 p-20">
+                            <div id="rotar" className="w-10 h-full border-2 border-black rounded-2xl grid grid-rows-3 bg-slate-400 p-1">
+                                <p id="rotar1-letter" className="text-center font-mono bg-white rounded-md row-start-2 h-7">1</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="enigma-logo" className="col-span-1 border-2 row-span-2 bg-slate-500 grid grid-rows-3">
+                        <h2 className="text-center row-start-2 mt-5 bg-black border-2 rounded-full h-16 m-2 shadow-lg p-2 uppercase font-mono font-bold text-3xl text-slate-200">Enigma</h2>
+                    </div>
+
+                    <div id="lightboard-container" className="border-2 col-span-5 bg-slate-600 grid grid-cols-5">
+                        <div id="plugboardDecals" className="col-span-1 text-center text-white my-auto p-2">
+                            <p className=" underline underline-offset-2">Lightboard</p>
+                            <p>This will show your cipher</p>
+                        </div>
+                        <KeyboardElements board="lightboard" keys={rotarArray[0].combination} />
+                    </div>
+
+                    <div id="keyboard-container" className="border-2 col-span-5 bg-slate-600 grid grid-cols-5">
+                        <div id="plugboardDecals" className="col-span-1 text-center text-white my-auto p-2">
+                            <p className=" underline underline-offset-2">Keyboard</p>
+                            <p>Type Here!</p>
+                        </div>
+                        <KeyboardElements board="keyboard" keys={rotarArray[0].combination} />
+                    </div>
+
+                    <div id="plugboard-container" className="border-2 col-span-5 bg-slate-600 grid grid-cols-5">
+                        <div id="plugboardDecals" className="col-span-1 text-center text-white my-auto p-2">
+                            <p className=" underline underline-offset-2">Plugboard</p>
+                            <p>Choose up to 10 pairs!</p>
+                        </div>
+                        <KeyboardElements board="plugboard" keys={rotarArray[0].combination} />
+                    </div>
+
+                </div>
+
+                <div id="ciphertext-display" className="row-span-3 row-start-3 m-2 col-start-4 p-10">
+                    <textarea id="ciphertext" className="w-full h-full rounded-xl resize-none p-10 shadow-lg" placeholder="this is ciphertext"></textarea>
+                </div>
+
+                <div id="close-window" className="col-start-4 translate-x-80 mt-40 translate-y-1 rounded-3xl shadow-lg row-start-5 w-1/5 h-1/2 text-center border-r-8 border-b-4 border-l-4 border-violet-900 bg-gradient-to-l from-violet-400 via-violet-300 to-transparent hover:cursor-pointer hover:scale-75 duration-200">
+                    <div id="toggleHereX" className="text-2xl mt-5">
+                        <h1 className="text-violet-400 font-bold font-mono">X</h1>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+// because I have changed how I want this to display and increase user funcitonality, I need to populate the 3 "keyboard" containers. Each of the same qwertz setup. 
+// I do however need to remember that I want to have each one have its own functions attached. So the plugboard container needs to have its separate plugboard function
+// the lightboard have its own funcitons 
+// the keyboard to have its own functions
+
+// The idea is that the user will choose 3 of the 5 rotars and choose a number to start each rotar at (between 1 and 26) the rotars are placed right to left in order chosen
+// create a function that will (on the radio button clicks) set the state for the rotar selection and the index it begins at. 
+// once the max rotars have been selected prevent the user from clicking other rotars, or add a button to restart the enigma setup would be easier.
+
+// once rotars are populated and functioning correctly move to the plugboard functions
+// on first click highlight plugboard index i and prompt for second selection, if plugboard has 10 combinations alert user no more can be selected.
+// if no plugboard selections then do nothing
+
+// on click for the keyboard itself add that letter to the plaintext state, it is with this we will use the cipher with, everything on screen is purely cosmetic.
+// so on click for keyboard, update plaintext only
+
+// on the plaintext state, then we can manipulate the encryption. Take it step by step, might be worth finishing the keyboards for more visual and go from there, just use default first 3
+// rotars for the initial development and then work out ui after that works?
+
+// FIRST:
+/* 
+    create the lightboard
+    keyboard
+    plugboard
+
+    do this by creating a jquery function to create p elements with the styling relevant to each of the 3 sections.
+
+    each of those elements needs a key corresponding to both the letter and the plug light and keyboards
+
+    maybe set an id of the elements container and then create the key as the letter value? that will come later, figure out basics to start.
+
+    
+    once the machine is fully populated reference the keys and ids for the individual functions
+    
+    so on keyboard click update the plaintext state
+    if plaintext  is updated then add to the textarea, use that data to then encrypt, pass through plugboard, rotars, reflectors, rotars, plugboards and finally lightboard. 
+    KISS and use different functions for each step.
+    when the lightboard function is created, make sure to use that to pass the ciphertext value.
+
+    HIGHLY RECOMMEND LOOKING AT THE "COMPONENT DID MOUNT" before looking at state management, want the user to be able to click onto the card before mounting component to bring the 
+    enigma fullscreen up and then want to be able to click the close icon at the bottom right to unmount the component. 
+
+    I like the way this is looking and once I have the functionality figured out then I think I have this sorted. 
+
+    REMEMBER ALL ABOUT STATE MANAGEMENT AFTER CREATING THE KEYBOARDS
+*/
+
 /* 
     THIS IS IMPORTANT TO KNOW!! 
             There are 2 types of components in react, functional and class components, I have been using functional components as that was the most 
@@ -122,165 +294,4 @@ import KeyboardElements from './KeyboardElements.jsx';
                         steps to use that input data and put it through an encryption algorithm for the enigma machine. I already have the 5 rotars, as well as the ETW to be able to 
                         manipulate and 
 
-*/
-
-const rotarArray = [
-    {
-        name: 'lightboard',
-        combination: ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "A", "S", "D", "F", "G", "H", "J", "K","P", "Y", "X", "C", "V", "B", "N", "M", "L"]
-    },
-    {
-        name: 'i',
-        combination: ["E", "K", "M", "F", "L", "G", "D", "Q", "V", "Z", "N", "T", "O", "W", "Y", "H", "X", "U", "S", "P", "A", "I", "B", "R", "C", "J"]
-    },
-    {
-        name: 'ii',
-        combination: ["A", "J", "D", "K", "S", "I", "R", "U", "X", "B", "L", "H", "W", "T", "M", "C", "Q", "G", "Z", "N", "P", "Y", "F", "V", "O", "E"]
-    },
-    {
-        name: 'iii',
-        combination: ["B", "D", "F", "H", "J", "L", "C", "R", "P", "T", "X", "V", "Z", "N", "Y", "E", "I", "W", "G", "A", "K", "M", "U", "S", "Q", "O"]
-    },
-    {
-        name: 'iv',
-        combination: ["E", "S", "O", "V", "P", "Z", "J", "A", "Y", "Q", "U", "I", "R", "H", "X", "L", "N", "F", "T", "G", "K", "D", "C", "M", "W", "B"]
-    },
-    {
-        name: 'v',
-        combination: ["V", "Z", "B", "R", "G", "I", "T", "Y", "U", "P", "S", "D", "N", "H", "L", "X", "A", "W", "M", "J", "Q", "O", "F", "E", "C", "K"]
-    }
-];
-
-
-export default function EnigmaFullScreen() {
-    // set state hook here for plaintext
-
-
-
-    return (
-        <>
-            <div className="absolute z-20 ml-60 mt-20 border-8 border-violet-500 rounded-3xl w-4/5 h-4/5 bg-violet-200 bg-opacity-90 grid grid-cols-4 grid-rows-5 font-mono">
-
-                <div id="explanation-rotar-selection" className="border-2 row-span-2 m-10 p-2 bg-slate-200 rounded-md shadow-lg">
-                    <h2 className="underline underline-offset-2">The Enigma Machine</h2>
-                    <p className="text-sm">Choose your rotars here and starting positions</p>
-                    <div id="rotar-select" className="grid grid-cols-5 grid-rows-2 border-2 border-black">
-                        <input id="rotar1-selector" type="radio" className="m-5 col-start-1"></input>
-                        <input id="rotar2-selector" type="radio" className="m-5 col-start-2"></input>
-                        <input id="rotar3-selector" type="radio" className="m-5 col-start-3"></input>
-                        <input id="rotar4-selector" type="radio" className="m-5 col-start-4"></input>
-                        <input id="rotar5-selector" type="radio" className="m-5 col-start-5"></input>
-                    </div>
-                </div>
-
-                <div id="plaintext-display" className="row-span-3 row-start-3 m-2 col-start-1 p-10">
-                    <textarea id="plaintext" className="w-full h-full rounded-xl resize-none p-10 shadow-lg" placeholder="this is plaintext, will update as keys are pressed on keyboard"></textarea>
-                </div>
-
-                <div id="enigma-css-container" className="col-span-2 col-start-2 row-span-5 border-8 p-5 border-orange-400 bg-orange-500 rounded-md my-10 grid grid-cols-5 grid-rows-5">
-                    <div id="enigma-rotar-container" className="border-2 col-span-4 row-span-2 grid grid-cols-3 bg-slate-700">
-                        <div id="rotar-container" className="border-2 p-20">
-                            <div id="rotar" className="w-10 h-full border-2 border-black rounded-2xl grid grid-rows-3 bg-slate-400 p-1">
-                                <p id="rotar3-letter" className="text-center font-mono bg-white rounded-md row-start-2 h-7">1</p>
-                            </div>
-                        </div>
-                        <div id="rotar-container" className="border-2 p-20">
-                            <div id="rotar" className="w-10 h-full border-2 border-black rounded-2xl grid grid-rows-3 bg-slate-400 p-1">
-                                <p id="rotar2-letter" className="text-center font-mono bg-white rounded-md row-start-2 h-7">1</p>
-                            </div>
-                        </div>
-                        <div id="rotar-container" className="border-2 p-20">
-                            <div id="rotar" className="w-10 h-full border-2 border-black rounded-2xl grid grid-rows-3 bg-slate-400 p-1">
-                                <p id="rotar1-letter" className="text-center font-mono bg-white rounded-md row-start-2 h-7">1</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="enigma-logo" className="col-span-1 border-2 row-span-2 bg-slate-500 grid grid-rows-3">
-                        <h2 className="text-center row-start-2 mt-5 bg-black border-2 rounded-full h-16 m-2 shadow-lg p-2 uppercase font-mono font-bold text-3xl text-slate-200">Enigma</h2>
-                    </div>
-
-                    <div id="lightboard-container" className="border-2 col-span-5 bg-slate-600 grid grid-cols-5">
-                        <div id="plugboardDecals" className="col-span-1 text-center text-white my-auto">
-                            <p className=" underline underline-offset-2">Lightboard</p>
-                            <p>This will show your cipher</p>
-                        </div>
-                        <KeyboardElements board="lightboard" keys={rotarArray[0].combination} />
-                    </div>
-
-                    <div id="keyboard-container" className="border-2 col-span-5 bg-slate-600 grid grid-cols-5">
-                        <div id="plugboardDecals" className="col-span-1 text-center text-white my-auto">
-                            <p className=" underline underline-offset-2">Keyboard</p>
-                        </div>
-                        <KeyboardElements board="keyboard" keys={rotarArray[0].combination} />
-                    </div>
-
-                    <div id="plugboard-container" className="border-2 col-span-5 bg-slate-600 grid grid-cols-5">
-                        <div id="plugboardDecals" className="col-span-1 text-center text-white my-auto">
-                            <p className=" underline underline-offset-2">Plugboard</p>
-                        </div>
-                        <KeyboardElements board="plugboard" keys={rotarArray[0].combination} />
-                    </div>
-
-                </div>
-
-                <div id="ciphertext-display" className="row-span-3 row-start-3 m-2 col-start-4 p-10">
-                    <textarea id="ciphertext" className="w-full h-full rounded-xl resize-none p-10 shadow-lg" placeholder="this is ciphertext"></textarea>
-                </div>
-
-                <div id="close-window" className="col-start-4 translate-x-80 mt-40 translate-y-1 rounded-3xl shadow-lg row-start-5 w-1/5 h-1/2 text-center border-r-8 border-b-4 border-l-4 border-violet-900 bg-gradient-to-l from-violet-400 via-violet-300 to-transparent hover:cursor-pointer hover:scale-75 duration-200">
-                    <div id="toggleHereX" className="text-2xl mt-5">
-                        <h1 className="text-violet-400 font-bold font-mono">X</h1>
-                    </div>
-                </div>
-            </div>
-        </>
-    );
-}
-
-// because I have changed how I want this to display and increase user funcitonality, I need to populate the 3 "keyboard" containers. Each of the same qwertz setup. 
-// I do however need to remember that I want to have each one have its own functions attached. So the plugboard container needs to have its separate plugboard function
-// the lightboard have its own funcitons 
-// the keyboard to have its own functions
-
-// The idea is that the user will choose 3 of the 5 rotars and choose a number to start each rotar at (between 1 and 26) the rotars are placed right to left in order chosen
-// create a function that will (on the radio button clicks) set the state for the rotar selection and the index it begins at. 
-// once the max rotars have been selected prevent the user from clicking other rotars, or add a button to restart the enigma setup would be easier.
-
-// once rotars are populated and functioning correctly move to the plugboard functions
-// on first click highlight plugboard index i and prompt for second selection, if plugboard has 10 combinations alert user no more can be selected.
-// if no plugboard selections then do nothing
-
-// on click for the keyboard itself add that letter to the plaintext state, it is with this we will use the cipher with, everything on screen is purely cosmetic.
-// so on click for keyboard, update plaintext only
-
-// on the plaintext state, then we can manipulate the encryption. Take it step by step, might be worth finishing the keyboards for more visual and go from there, just use default first 3
-// rotars for the initial development and then work out ui after that works?
-
-// FIRST:
-/* 
-    create the lightboard
-    keyboard
-    plugboard
-
-    do this by creating a jquery function to create p elements with the styling relevant to each of the 3 sections.
-
-    each of those elements needs a key corresponding to both the letter and the plug light and keyboards
-
-    maybe set an id of the elements container and then create the key as the letter value? that will come later, figure out basics to start.
-
-    
-    once the machine is fully populated reference the keys and ids for the individual functions
-    
-    so on keyboard click update the plaintext state
-    if plaintext  is updated then add to the textarea, use that data to then encrypt, pass through plugboard, rotars, reflectors, rotars, plugboards and finally lightboard. 
-    KISS and use different functions for each step.
-    when the lightboard function is created, make sure to use that to pass the ciphertext value.
-
-    HIGHLY RECOMMEND LOOKING AT THE "COMPONENT DID MOUNT" before looking at state management, want the user to be able to click onto the card before mounting component to bring the 
-    enigma fullscreen up and then want to be able to click the close icon at the bottom right to unmount the component. 
-
-    I like the way this is looking and once I have the functionality figured out then I think I have this sorted. 
-
-    REMEMBER ALL ABOUT STATE MANAGEMENT AFTER CREATING THE KEYBOARDS
 */
